@@ -8,7 +8,7 @@ public class ConsumerApplication {
 	public static void main(String[] args) {
 
 		// Set Connection Configurations
-		String brokers = "220.118.158.230:9092";
+		String brokers = "localhost:9092";
 		String groupId = "GroupWithTask";
 		String topic = "TestTopic";
 		int numberOfConsumer = 20;
