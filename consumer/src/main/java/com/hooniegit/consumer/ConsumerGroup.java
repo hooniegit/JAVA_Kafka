@@ -21,8 +21,7 @@ public final class ConsumerGroup {
 	    // Create Consumer Group
 	    consumers = new ArrayList<>();
 	    for (int i = 0; i < this.numberOfConsumers; i++) {
-	    	ConsumerThread ncThread =
-	    		new ConsumerThread(this.brokers, this.groupId, this.topic);
+	    	ConsumerThread ncThread = new ConsumerThread(this.brokers, this.groupId, this.topic);
 	    	consumers.add(ncThread);
 	    }
 	}
@@ -30,8 +29,11 @@ public final class ConsumerGroup {
 	// Start Notification Consumer Thread
 	public void execute() {
 		for (ConsumerThread ncThread : consumers) {
-			Thread t = new Thread(ncThread);
-			t.start();
+			// Thread t = new Thread(ncThread);
+			// t.start();
+			ExecutorManager manager = new ExecutorManager(ncThread);
+			Thread managerThread = new Thread(manager);
+			managerThread.start();
 		}
 	}
 

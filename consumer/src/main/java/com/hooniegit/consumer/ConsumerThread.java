@@ -16,12 +16,11 @@ import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.errors.WakeupException;
 
+//Implements Runnable (to Run run() in Thread)
 public class ConsumerThread implements Runnable {
-
 	private final KafkaConsumer<String, String> consumer;
 	private final String topic;
 	public PollDataTasks pollDataTasks;
-	
 	private Map<TopicPartition, OffsetAndMetadata> currentOffsets = new HashMap<>();
 	Duration timeout = Duration.ofMillis(100);
 
@@ -76,6 +75,7 @@ public class ConsumerThread implements Runnable {
 	}
 
 	// Run Single Consumer
+	// Add Override Option to Run in Thread
 	@Override
 	public void run() {
 		try {
@@ -111,5 +111,9 @@ public class ConsumerThread implements Runnable {
 			}
 		}
 	}
-
+	
+	// Wake Up Consumer (when Shut Down Happens)
+    public void shutdown() {
+        consumer.wakeup();
+    }
 }

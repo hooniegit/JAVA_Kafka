@@ -11,13 +11,16 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 public class PollDataTasks {
 	// ** Need to Re-Define Types **
 	// Use ConsumerRecords<String, String> records
-
     void run(ConsumerRecord<String, String> record) {
         System.out.println("[Consumer] Task Threads Started"); // Log
+        
+		// ** Add Deserialze Codes Here.. **
+        // ** Need to Change 1. record.key(), 2. record.value() **
 
         // Create Tasks List
         List<Thread> threadList = new ArrayList<>();
-        // ** Add Functions Here.. **
+        
+        // Add Functions
         threadList.add(new Thread(() -> {
 			try {
 				SAMPLE_FileWriter(record);
@@ -29,7 +32,7 @@ public class PollDataTasks {
 
         // Run Threads
         for (Thread thread : threadList) {
-        		thread.start();
+        	thread.start();
         }
 
         // Join Threads
