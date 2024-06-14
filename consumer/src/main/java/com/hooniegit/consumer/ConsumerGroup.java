@@ -35,6 +35,9 @@ public final class ConsumerGroup {
 			Thread managerThread = new Thread(manager);
 			managerThread.start();
 		}
+		
+		ThreadManager threadManager = new ThreadManager();
+		threadManager.MeasureThreads();
 	}
 
 	// Return Consumer Count

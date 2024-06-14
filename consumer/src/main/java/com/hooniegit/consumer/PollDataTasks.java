@@ -48,6 +48,9 @@ public class PollDataTasks {
 	
 	// SAMPLE - Write Polled Data as a Log File
 	public static void SAMPLE_FileWriter(ConsumerRecord<String, String> record) throws IOException{
+		// Start Time
+		long startTime = System.currentTimeMillis();
+		
 		// Reference Path
 		String logDir = "C:\\Users\\dhkim\\Desktop\\Logs\\KafkaJavaLogs\\";
 
@@ -76,6 +79,12 @@ public class PollDataTasks {
                 }
             }
         }
+        
+        // End Time
+        long endTime = System.currentTimeMillis();
+        // Elapsed Time
+        long elapsedTime = endTime - startTime;
+        // ** Need Logging Logics Here.. **
 	}
         
 	// SAMPLE - Say Hello to Kafka
